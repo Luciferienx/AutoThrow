@@ -1,0 +1,23 @@
+name: Build VST3
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurer
+        run: cmake -S AutoThrow -B build -A x64
+
+      - name: Compiler le VST3
+        run: cmake --build build --config Release --target AutoThrow_VST3 --parallel
+
+      - name: Recuperer le VST3
+        uses: actions/upload-artifact@v4
+        with:
+          name: AutoThrow-VST3-Windows
+          path: build/AutoThrow_artefacts/Release/VST3/AutoThrow.vst3
