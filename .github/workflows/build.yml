@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Configurer
-        run: cmake -S AutoThrow -B build -A x64
+        run: cmake -S AutoThrow_V3/AutoThrow -B build -A x64
 
       - name: Compiler le VST3
         run: cmake --build build --config Release --target AutoThrow_VST3 --parallel
